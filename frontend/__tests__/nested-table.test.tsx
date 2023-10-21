@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { NestedTable } from '@/components'
-import { data } from '@/shared/mocks/DataNestedTable.mock'
+import { data } from '@/shared/mocks/mock-data'
 import '@testing-library/jest-dom'
 
 test('displays table and data', () => {

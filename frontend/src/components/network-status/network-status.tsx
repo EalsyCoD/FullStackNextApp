@@ -1,4 +1,4 @@
-import { handleNetworkChange } from '@/helpers/NetworkCheck'
+import { handleNetworkChange } from '@/helpers/network-check'
 import React, { useEffect, ReactNode } from 'react'
 
 interface NetworkStatusProps {

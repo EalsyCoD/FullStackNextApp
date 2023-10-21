@@ -10,7 +10,6 @@ describe('Login Component', () => {
     cy.get('input[placeholder="Enter your username"]').type(username)
     cy.get('input[placeholder="Enter your password"]').type(password)
     cy.get('button').contains('Log in').click()
-
   })
 
   it('should display an error message for invalid credentials', () => {
@@ -20,7 +19,6 @@ describe('Login Component', () => {
     cy.get('input[placeholder="Enter your username"]').type(username)
     cy.get('input[placeholder="Enter your password"]').type(password)
     cy.get('button').contains('Log in').click()
-
   })
 
   it('should display an error message for an incorrect username', () => {

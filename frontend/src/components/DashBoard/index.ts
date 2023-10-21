@@ -1,1 +1,1 @@
-export * from './DashBoard'
+export * from './dashboard'

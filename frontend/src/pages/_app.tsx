@@ -5,7 +5,7 @@ import '@/styles/globals.css'
 
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { AuthProvider } from '@/Context/AuthProvider'
+import { AuthProvider } from '@/context/auth-provider'
 import { ErrorBoundary, ThemeProvider, NetworkStatus } from '@/components'
 
 export default function App({ Component, pageProps }: AppProps) {

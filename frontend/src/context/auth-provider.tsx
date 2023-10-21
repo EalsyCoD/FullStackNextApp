@@ -1,4 +1,4 @@
-import { decodeJWT } from '@/helpers/DecodeJWT'
+import { decodeJWT } from '@/helpers/decode-jwt'
 import React, { createContext, useContext, ReactNode, useEffect } from 'react'
 
 interface AuthContextType {

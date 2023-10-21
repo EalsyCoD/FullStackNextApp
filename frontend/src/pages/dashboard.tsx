@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import AuthGuard from '@/Guards/AuthGuard'
-import { useAuth } from '@/Context/AuthProvider'
+import { useAuth } from '@/context/auth-provider'
 import { DashboardComponent } from '@/components'
 
 const Dashboard = () => {

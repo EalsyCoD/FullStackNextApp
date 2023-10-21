@@ -5,11 +5,13 @@
 
 
 - NextJS
+- TypeScript
 - Tailwind CSS
 - ShadcnUi
 - Jest/Cypress
 - React-toastify(notifications)
 - React Context
+
 
 
 # How to run

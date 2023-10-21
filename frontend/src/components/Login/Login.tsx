@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { LoginForm } from './LoginForm'
-import { ModeToggle } from '../ModeToogle'
+import { LoginForm } from './login-form'
+import { ModeToggle } from '../mode-toggle'
 
 export const Login = () => {
   return (

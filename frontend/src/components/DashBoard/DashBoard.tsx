@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Button } from '@/components/ui/Button'
-import { data } from '@/shared/mocks/DataNestedTable.mock'
+import { Button } from '@/components/ui/button'
+import { data } from '@/shared/mocks/mock-data'
 import { useRouter } from 'next/router'
-import { useAuth } from '@/Context/AuthProvider'
+import { useAuth } from '@/context/auth-provider'
 import { refreshAccessToken } from '@/pages/api/Api'
 import { toast } from 'react-toastify'
-import { ModeToggle } from '../ModeToogle'
-import { NestedTable } from '../NestedTable'
+import { ModeToggle } from '../mode-toggle'
+import { NestedTable } from '../nested-table'
 
 export const DashboardComponent = () => {
   const { token, logout, saveRefreshToken, usernameAuth } = useAuth()

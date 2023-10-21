@@ -1,20 +1,15 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { Button, Input } from '@/components/ui'
-import { validatePassword, validateUsername } from '@/helpers/Validations'
-import { useAuth } from '@/Context/AuthProvider'
+import {
+  ValidationResult,
+  validatePassword,
+  validateUsername,
+} from '@/helpers/validations'
+import { useAuth } from '@/context/auth-provider'
 import { toast } from 'react-toastify'
 import router from 'next/router'
 import { authenticateUser } from '@/pages/api/Api'
-
-interface FormValues {
-  login: string
-  password: string
-}
-
-interface FormErrors {
-  login: string | null
-  password: string | null
-}
+import { FormErrors, FormValidates, FormValues } from './types'
 
 export const LoginForm = () => {
   const { login } = useAuth()
@@ -27,32 +22,33 @@ export const LoginForm = () => {
     password: null,
   })
 
+  const formValidations: Record<
+    keyof FormValues,
+    (value: string) => ValidationResult
+  > = {
+    login: validateUsername,
+    password: validatePassword,
+  }
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setFormValues({ ...formValues, [name]: value })
 
-    if (name === 'login') {
-      const error = validateUsername(value)
-      setFormErrors({ ...formErrors, login: error.error })
-    } else if (name === 'password') {
-      const error = validatePassword(value)
-      setFormErrors({ ...formErrors, password: error.error })
+    const formValidates: FormValidates = {
+      login: validateUsername,
+      password: validatePassword,
     }
+
+    const error = formValidates[name](value)
+    setFormErrors({ ...formErrors, [name]: error ? error.error : null })
+    setFormValues({ ...formValues, [name]: value })
   }
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     const newFormErrors: FormErrors = {
-      login: null,
-      password: null,
-    }
-
-    if (!formValues.login) {
-      newFormErrors.login = 'Username is required'
-    }
-    if (!formValues.password) {
-      newFormErrors.password = 'Password is required'
+      login: formValidations.login(formValues.login).error,
+      password: formValidations.password(formValues.password).error,
     }
 
     setFormErrors(newFormErrors)

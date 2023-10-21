@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { useAuth } from '@/Context/AuthProvider'
+import { useAuth } from '@/context/auth-provider'
 
 interface AuthGuardProps {
   children: ReactNode

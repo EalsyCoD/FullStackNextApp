@@ -4,8 +4,9 @@
  * @property {string | null} error - An error message or null if there are no errors.
  */
 
-interface ValidationResult {
-  error: string | null
+export type ValidationResult = {
+  error: string | null // Строка с сообщением об ошибке или null, если ошибки нет
+  isValid: boolean // Булевое значение, указывающее, прошла валидация успешно или нет
 }
 
 /**
@@ -17,14 +18,16 @@ interface ValidationResult {
 
 export function validateUsername(username: string): ValidationResult {
   if (!username) {
-    return { error: 'Username required' }
+    return { error: 'Username required', isValid: false }
   }
 
   if (username.length < 6) {
-    return { error: 'Login must contain at least 6 characters' }
+    return {
+      error: 'Username must contain at least 6 characters',
+      isValid: false,
+    }
   }
-
-  return { error: null }
+  return { error: null, isValid: true }
 }
 
 /**
@@ -36,12 +39,15 @@ export function validateUsername(username: string): ValidationResult {
 
 export function validatePassword(password: string): ValidationResult {
   if (!password) {
-    return { error: 'Password required' }
+    return { error: 'Password required', isValid: false }
   }
 
   if (password.length < 6) {
-    return { error: 'Password must contain at least 6 characters' }
+    return {
+      error: 'Password must contain at least 6 characters',
+      isValid: false,
+    }
   }
 
-  return { error: null }
+  return { error: null, isValid: true }
 }

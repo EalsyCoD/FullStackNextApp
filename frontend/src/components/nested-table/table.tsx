@@ -3,11 +3,16 @@ import { orderBy } from 'lodash'
 import { generateUniqueId } from '@/shared/utils/generateUniqueId'
 import { Input, Button } from '@/components/ui'
 import { SortDirections } from '@/shared/constants/enums'
-import { Column, NestedTableProps, Row, TableData } from './types'
-import { TableRow } from './TableRow'
+
+import { UserInfo, Row, TableData } from './types'
+import { TableRow } from './table-row'
+
+export interface NestedTableProps {
+  data: TableData
+}
 
 export const NestedTable: React.FC<NestedTableProps> = ({ data }) => {
-  const [newRow, setNewRow] = useState<Row>({
+  const [newRow, setNewRow] = useState<UserInfo>({
     id: generateUniqueId(),
     name: '',
     age: 0,
@@ -15,7 +20,7 @@ export const NestedTable: React.FC<NestedTableProps> = ({ data }) => {
 
   const [tableData, setTableData] = useState<TableData>(data)
 
-  const [sortedColumn, setSortedColumn] = useState<Column | null>(null)
+  const [sortedColumn, setSortedColumn] = useState<UserInfo | null>(null)
   const [sortDirection, setSortDirection] = useState<SortDirections>(
     SortDirections.ASC,
   )
@@ -41,21 +46,21 @@ export const NestedTable: React.FC<NestedTableProps> = ({ data }) => {
   const addNewRow = () => {
     if (newRow.name && newRow.age) {
       const newData = { ...tableData }
-
-      const newDataRow: Row = {
+      const newDataRow: UserInfo = {
+        ...newRow,
         id: generateUniqueId(),
         name: newRow.name,
         age: newRow.age,
       }
 
-      newData.rows.push(newDataRow)
+      newData.rows.push(newDataRow as any)
 
       setTableData(newData)
       setNewRow({ id: generateUniqueId(), name: '', age: 0 })
     }
   }
 
-  const toggleSort = (column: Column) => {
+  const toggleSort = (column: UserInfo) => {
     if (column === sortedColumn) {
       setSortDirection(sortDirection =>
         sortDirection === SortDirections.ASC
