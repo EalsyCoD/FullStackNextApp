@@ -53,7 +53,7 @@ export const NestedTable: React.FC<NestedTableProps> = ({ data }) => {
         age: newRow.age,
       }
 
-      newData.rows.push(newDataRow as any)
+      newData.rows.push(newDataRow)
 
       setTableData(newData)
       setNewRow({ id: generateUniqueId(), name: '', age: 0 })
