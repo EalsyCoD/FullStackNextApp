@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 187, 33%, 43%;
+    --foreground: 58, 65%, 83%;
+
+    --input: 225, 27%, 51%;
+
+    --muted: 70, 20%, 68%;
+    --muted-foreground: 58, 65%, 83%;
+
+    --popover: 187, 33%, 43%;
+    --popover-foreground: 58, 65%, 83%;
+
+    --border: 93, 28%, 56%;
+
+    --card: 187, 33%, 43%;
+    --card-foreground: 58, 65%, 83%;
+
+    --primary: 93, 28%, 56%;
+    --primary-foreground: 187, 33%, 43%;
+
+    --secondary: 70, 20%, 68%;
+    --secondary-foreground: 58, 65%, 83%;
+
+    --accent: 70, 20%, 68%;
+    --accent-foreground: 58, 65%, 83%;
+
+    --destructive: 58, 65%, 83%;
+    --destructive-foreground: 187, 33%, 43%;
+
+    --ring: 93, 28%, 56%;
+  }
+}
+
+.dark {
+  --background: 231, 15%, 18%;
+  --foreground: 60, 30%, 96%;
+
+  --muted: 232, 14%, 31%;
+  --muted-foreground: 60, 30%, 96%;
+
+  --popover: 231, 15%, 18%;
+  --popover-foreground: 60, 30%, 96%;
+
+  --border: 232, 14%, 31%;
+  --input: 225, 27%, 51%;
+
+  --tablecl: 232, 14%, 31%;
+
+  --card: 232, 14%, 31%;
+  --card-foreground: 60, 30%, 96%;
+
+  --primary: 265, 89%, 78%;
+  --primary-foreground: 60, 30%, 96%;
+
+  --secondary: 326, 100%, 74%;
+  --secondary-foreground: 60, 30%, 96%;
+
+  --accent: 225, 27%, 51%;
+  --accent-foreground: 60, 30%, 96%;
+
+  --destructive: 0, 100%, 67%;
+  --destructive-foreground: 60, 30%, 96%;
+
+  --ring: 225, 27%, 51%;
+}
+
+.light {
+  --background: 231, 15%, 100%;
+  --foreground: 60, 30%, 10%;
+
+  --muted: 232, 14%, 98%;
+  --muted-foreground: 60, 30%, 20%;
+
+  --popover: 231, 15%, 94%;
+  --popover-foreground: 60, 30%, 20%;
+
+  --tablecl: 0, 0%, 50%;
+
+  --border: 232, 14%, 31%;
+
+  --card: 232, 14%, 98%;
+  --card-foreground: 60, 30%, 5%;
+
+  --input: 238, 88%, 57%;
+
+  --primary: 201, 100%, 50% --primary-foreground: 60, 30%, 96%;
+
+  --secondary: 326, 100%, 74%;
+  --secondary-foreground: 60, 30%, 96%;
+
+  --accent: 225, 27%, 70%;
+  --accent-foreground: 60, 30%, 10%;
+
+  --destructive: 0, 100%, 67%;
+  --destructive-foreground: 60, 30%, 96%;
+
+  --ring: 225, 27%, 51%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
