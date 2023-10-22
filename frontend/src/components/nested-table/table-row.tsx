@@ -1,16 +1,12 @@
 import React from 'react'
 import { SortDirections } from '@/shared/constants/enums'
-import { Row, TableColumn, TableData } from './types'
+import { TableData, Row, Column, UserInfo } from './types'
 import { NestedTable } from './table'
 
 interface TableRowProps {
   data: TableData
   row: Row
   toggleRow: (row: Row) => void
-  sortedColumn: TableColumn | null
-  sortDirection: SortDirections
-  filterText: string
-  handleFilterTextChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export const TableRow: React.FC<TableRowProps> = ({ data, row, toggleRow }) => {
@@ -33,11 +29,11 @@ export const TableRow: React.FC<TableRowProps> = ({ data, row, toggleRow }) => {
   return (
     <React.Fragment key={row.id}>
       <tr className="border-b border-gray-200 bg-table">
-        {data.columns.map(column => {
-          const field = row.values[column.id as TableColumn]
+        {data.columns.map(({ id }) => {
+          const field = row.values[id as keyof UserInfo]
           return (
             <td
-              key={column.id}
+              key={id}
               className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
             >
               {field}

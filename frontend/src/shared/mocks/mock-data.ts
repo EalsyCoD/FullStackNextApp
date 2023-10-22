@@ -1,21 +1,10 @@
-import { TableColumn, TableColumnInfo, UserInfo } from '@/components/nested-table/types'
+import { TableData } from '@/components/nested-table/types'
 
-export interface DataItem {
-  id: number
-  values: UserInfo
-  children: DataItem[]
-}
-
-export interface TableDataMock {
-  columns: TableColumnInfo[]
-  rows: DataItem[]
-}
-
-export const data: Readonly<TableDataMock> = {
+export const data: Readonly<TableData> = {
   columns: [
-    { id: TableColumn.ID, name: 'id', age: 'age' },
-    { id: TableColumn.Name, name: 'name', age: 'age' },
-    { id: TableColumn.Age, name: 'age', age: 'age' },
+    { id: 'id', name: 'ID', displayName: 'id' },
+    { id: 'name', name: 'Name', displayName: 'name' },
+    { id: 'age', name: 'Age', displayName: 'age' },
   ],
   rows: [
     {
