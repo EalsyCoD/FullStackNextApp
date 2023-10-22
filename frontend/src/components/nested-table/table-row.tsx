@@ -1,6 +1,5 @@
 import React from 'react'
-import { SortDirections } from '@/shared/constants/enums'
-import { TableData, Row, Column, UserInfo } from './types'
+import { TableData, Row, UserInfo } from './types'
 import { NestedTable } from './table'
 
 interface TableRowProps {

@@ -111,13 +111,13 @@ export const NestedTable: React.FC<NestedTableProps> = ({ data }) => {
           <Input
             type="text"
             placeholder="Name"
-            value={String(newRow.name)}
+            value={newRow.name}
             onChange={e => setNewRow({ ...newRow, name: e.target.value })}
           />
           <Input
             type="text"
             placeholder="Age"
-            value={String(newRow.age)}
+            value={newRow.age}
             onChange={e =>
               setNewRow({ ...newRow, age: parseInt(e.target.value) || 0 })
             }
