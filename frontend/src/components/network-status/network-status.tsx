@@ -29,7 +29,7 @@ export const NetworkStatus = ({ children }: NetworkStatusProps) => {
     return () => {
       clearInterval(intervalId)
     }
-  }, [notificationShown]) 
+  }, [notificationShown])
 
   return <div>{children}</div>
 }

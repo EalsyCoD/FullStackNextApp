@@ -33,13 +33,8 @@ export const LoginForm = () => {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
 
-    const formValidates: FormValidates = {
-      login: validateUsername,
-      password: validatePassword,
-    }
-
-    const error = formValidates[name](value)
-    setFormErrors({ ...formErrors, [name]: error ? error.error : null })
+    const error = formValidations[name as keyof FormValues](value)
+    setFormErrors({ ...formErrors, [name]: error?.error || null })
     setFormValues({ ...formValues, [name]: value })
   }
 

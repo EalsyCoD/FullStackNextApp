@@ -4,7 +4,7 @@ import { generateUniqueId } from '@/shared/utils/generateUniqueId'
 import { Input, Button } from '@/components/ui'
 import { SortDirections } from '@/shared/constants/enums'
 
-import { UserInfo, Row, TableData } from './types'
+import { UserInfo, Row, TableData, TableColumn } from './types'
 import { TableRow } from './table-row'
 
 export interface NestedTableProps {
@@ -20,7 +20,7 @@ export const NestedTable: React.FC<NestedTableProps> = ({ data }) => {
 
   const [tableData, setTableData] = useState<TableData>(data)
 
-  const [sortedColumn, setSortedColumn] = useState<UserInfo | null>(null)
+  const [sortedColumn, setSortedColumn] = useState<TableColumn | null>(null)
   const [sortDirection, setSortDirection] = useState<SortDirections>(
     SortDirections.ASC,
   )
@@ -31,11 +31,15 @@ export const NestedTable: React.FC<NestedTableProps> = ({ data }) => {
 
   const filterRows = (rows: Row[]) => {
     return filterText
-      ? rows.filter(row =>
-          Object.values(row).some(value =>
-            String(value).toLowerCase().includes(filterText.toLowerCase()),
-          ),
-        )
+      ? rows.filter(row => {
+          const name = row.values.name
+          const age = row.values.age
+
+          return (
+            name.toLowerCase().includes(filterText.toLowerCase()) ||
+            age.toString().toLowerCase().includes(filterText.toLowerCase())
+          )
+        })
       : rows
   }
 
@@ -45,22 +49,27 @@ export const NestedTable: React.FC<NestedTableProps> = ({ data }) => {
 
   const addNewRow = () => {
     if (newRow.name && newRow.age) {
-      const newData = { ...tableData }
-      const newDataRow: UserInfo = {
-        ...newRow,
+      const newDataRow: Row = {
         id: generateUniqueId(),
-        name: newRow.name,
-        age: newRow.age,
+        values: {
+          id: generateUniqueId(),
+          name: newRow.name,
+          age: newRow.age,
+        },
+        children: [],
       }
 
-      newData.rows.push(newDataRow)
+      const newData = {
+        ...tableData,
+        rows: [...tableData.rows, newDataRow],
+      }
 
       setTableData(newData)
       setNewRow({ id: generateUniqueId(), name: '', age: 0 })
     }
   }
 
-  const toggleSort = (column: UserInfo) => {
+  const toggleSort = (column: TableColumn) => {
     if (column === sortedColumn) {
       setSortDirection(sortDirection =>
         sortDirection === SortDirections.ASC
@@ -77,8 +86,8 @@ export const NestedTable: React.FC<NestedTableProps> = ({ data }) => {
     const filteredRows = filterRows(rows)
     const sortedRows = orderBy(
       filteredRows,
-      sortedColumn ? sortedColumn.id : '',
-      sortDirection,
+      [sortedColumn || '', 'values.name', 'values.age'],
+      [sortDirection, sortDirection, sortDirection],
     )
 
     const toggleRow = (row: Row) => {
@@ -141,11 +150,11 @@ export const NestedTable: React.FC<NestedTableProps> = ({ data }) => {
                 key={column.id}
                 scope="col"
                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                onClick={() => toggleSort(column)}
+                onClick={() => toggleSort(column.id)}
               >
                 <div className="flex items-center">
                   {column.name}
-                  {sortedColumn && sortedColumn.id === column.id && (
+                  {sortedColumn === column.id && (
                     <span>
                       {sortDirection === SortDirections.ASC ? '↑' : '↓'}
                     </span>

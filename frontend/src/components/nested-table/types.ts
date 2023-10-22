@@ -5,7 +5,7 @@ export enum TableColumn {
 }
 
 export interface UserInfo {
-  id: string
+  id: string | number
   name: string
   age: number
 }
@@ -13,12 +13,18 @@ export interface UserInfo {
 export type Row = {
   id: string | number
   children?: Row[]
+  values: UserInfo
   isExpanded?: boolean
 }
 
+export interface TableColumnInfo {
+  id: TableColumn;
+  name: string;
+  age: string;
+}
 export interface TableData {
-  columns: UserInfo[]
-  rows: Row[]
+  columns: TableColumnInfo[];
+  rows: Row[];
 }
 
 export interface NestedTableProps {

@@ -1,15 +1,13 @@
 import React from 'react'
 import { SortDirections } from '@/shared/constants/enums'
-
-import { UserInfo, Row, TableData } from './types'
+import { Row, TableColumn, TableData } from './types'
 import { NestedTable } from './table'
-import { mapColumnToTableColumn } from '@/helpers/column-converter'
 
 interface TableRowProps {
   data: TableData
   row: Row
   toggleRow: (row: Row) => void
-  sortedColumn: UserInfo | null
+  sortedColumn: TableColumn | null
   sortDirection: SortDirections
   filterText: string
   handleFilterTextChange: (e: React.ChangeEvent<HTMLInputElement>) => void
@@ -36,21 +34,15 @@ export const TableRow: React.FC<TableRowProps> = ({ data, row, toggleRow }) => {
     <React.Fragment key={row.id}>
       <tr className="border-b border-gray-200 bg-table">
         {data.columns.map(column => {
-          const tableColumn = mapColumnToTableColumn(
-            column.id as keyof UserInfo,
-          ) as keyof Row
-          if (tableColumn) {
-            const field = row[tableColumn]
-            return (
-              <td
-                key={column.id}
-                className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-              >
-                {field ? field.toString() : ''}
-              </td>
-            )
-          }
-          return null
+          const field = row.values[column.id as TableColumn]
+          return (
+            <td
+              key={column.id}
+              className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+            >
+              {field}
+            </td>
+          )
         })}
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
           {row.children && (

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import AuthGuard from '@/Guards/AuthGuard'
+import AuthGuard from '@/guards/auth-guard'
 import { useAuth } from '@/context/auth-provider'
 import { DashboardComponent } from '@/components'
 
