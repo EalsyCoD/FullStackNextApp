@@ -1,4 +1,4 @@
-import { apiConstant } from '@/shared/constants/Api.constant'
+import { apiConstant } from '@/shared/constants/api.constant'
 import axios from 'axios'
 
 /**

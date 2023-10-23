@@ -8,7 +8,7 @@ import {
 import { useAuth } from '@/context/auth-provider'
 import { toast } from 'react-toastify'
 import router from 'next/router'
-import { authenticateUser } from '@/pages/api/Api'
+import { authenticateUser } from '@/pages/api/api'
 import { FormErrors, FormValidates, FormValues } from './types'
 
 export const LoginForm = () => {
